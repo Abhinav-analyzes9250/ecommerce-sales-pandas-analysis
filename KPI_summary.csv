@@ -1,0 +1,12 @@
+KPI,Value,Definition
+Total Revenue,"$311,111.00",Sum of Revenue (quantity x price) for Completed orders only
+Completed Orders,695,Unique order_id count among Completed orders
+Average Order Value,$447.64,Total Revenue / Completed Orders
+Unique (Active) Customers,267,Unique customer_id count among Completed orders
+Repeat Customers,196,Customers with more than one unique Completed order
+Repeat Purchase Rate,73.41%,Repeat Customers / Unique Active Customers x 100
+Top 10 Customer Revenue Share,11.34%,Revenue from the top 10 customers by revenue / Total Revenue x 100
+Top 20% Customer Revenue Share,42.31%,Revenue from the top 20% of customers by revenue / Total Revenue x 100
+Completed Order Rate,80.50%,Completed orders / All orders x 100
+Cancelled Order Rate,10.30%,Cancelled orders / All orders x 100
+Returned Order Rate,9.20%,Returned orders / All orders x 100

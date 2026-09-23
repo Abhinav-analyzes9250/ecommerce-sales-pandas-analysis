@@ -1,0 +1,6 @@
+dataset,rows,columns
+customers,300,3
+orders,1000,4
+order_items,2000,4
+products,50,3
+sales_cleaned,1625,10

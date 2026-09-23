@@ -1,0 +1,31 @@
+Question_No,Business_Question,Result
+1,How many rows and columns are present in each dataset?,"customers 300x3, orders 1000x4, order_items 2000x4, products 50x3, sales_cleaned 1625x10"
+2,What columns are available in each dataset?,"customers: customer_id, country, signup_date | orders: order_id, customer_id, order_date, status | order_items: order_id, product_id, quantity, price | products: product_id, product_name, category"
+3,What are the data types of every column?,IDs and quantity/price are integers; country/status/product_name/category are strings; order_date/signup_date converted to datetime
+4,What statistical summary can be obtained for numerical columns?,"quantity ranges 1-5, price ranges 10-119 (see notebook Q4 output for full describe())"
+5,Which columns contain missing values and how many?,None - all 5 files have zero missing values in every column
+6,Are there duplicate records?,"No fully duplicated rows in any file; 33 repeated order_id+product_id combinations in order_items are legitimate repeat line items, not duplicates"
+7,Are date columns stored correctly?,order_date and signup_date were strings; converted to datetime with pd.to_datetime(errors='coerce'); no dates failed conversion
+8,Are there invalid or suspicious values?,"No negative/zero quantity or price found; quantity 1-5, price 10-119, all order statuses are one of Completed/Cancelled/Returned"
+9,How should missing values be handled?,No imputation was necessary - no missing values exist in any of the 5 files
+10,Are text/category fields standardized?,"country, status, product_name and category values are already consistent (no case/whitespace issues found)"
+11,How can orders and customers be combined?,"orders.merge(customers, on='customer_id', how='left', validate='many_to_one')"
+12,How can product information be added to order-level data?,"order_items merged with products, then merged with orders+customers on order_id (inner join)"
+13,"After merging, did the number of rows unexpectedly increase?","No - final merged dataset has 2000 rows, matching order_items row count exactly (no row multiplication)"
+14,Can you create a final sales DataFrame with the important fields?,"Yes - sales_df contains order_id, order_date, customer_id, country, status, product_id, product_name, category, quantity, price, Revenue, year, month, month_name, year_month"
+15,What is the total revenue from completed orders?,"$311,111.00"
+16,What is the total number of unique completed orders?,695
+17,What is the Average Order Value (AOV)?,$447.64
+18,Which are the top 10 products by revenue?,"Product_16 is #1 with $9,732 in revenue (full top 10 in top_products_by_revenue.csv)"
+19,Which are the top 10 products by quantity?,Product_45 is #1 with 154 units sold (full top 10 in top_products_by_quantity.csv)
+20,Which product categories generate the most revenue?,"Hair $101,637 (32.67%) > Makeup $81,085 (26.06%) > Body $76,011 (24.43%) > Skin $52,378 (16.84%)"
+21,What is the monthly revenue trend?,"Revenue fluctuates between ~$22,800 and ~$30,900 per month across 2024, no sustained up/down trend (see monthly_analysis.csv)"
+22,Which month generated the highest revenue?,"2024-01 with $30,948"
+23,Which month had the highest number of orders?,2024-10 with 70 completed orders
+24,Is revenue increasing or decreasing month over month?,Growth alternates between positive and negative months (range approx -25% to +32%); no consistent trend
+25,Who are the top 10 customers by revenue?,"Customer 13 is #1 with $5,048 in revenue (full list in top_customers_by_revenue.csv)"
+26,Which customers placed the most orders?,See customer_orders table in the notebook (Q26) - highest-order customers listed there
+27,What is the average revenue per customer?,"$1,165.21 per active (completed-order) customer"
+28,What is the repeat purchase rate?,196 of 267 active customers are repeat customers = 73.41%
+29,What % of revenue comes from the top 10 / top 20% of customers?,Top 10 customers = 11.34% of revenue; Top 20% of customers (53 customers) = 42.31% of revenue
+30,What are the 5 most important business insights?,See BUSINESS_INSIGHTS.md - Hair leads revenue; top-volume product != top-revenue product; monthly revenue is seasonal/variable; strong repeat purchasing with moderate revenue concentration; revenue/AOV both vary by country
